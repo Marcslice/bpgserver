@@ -4,7 +4,7 @@ BEGIN
 	DECLARE @combatLVL INT
 	DECLARE @mobLVL INT
 	DECLARE @mobATK INT
-	DECLARE @lvlScaling INT = 0
+	DECLARE @lvlScaling INT
 	DECLARE @dmg INT
 	
 	SELECT @combatLVL = playerLVL, @mobLVL = mobLVL, @mobATK = mobATK

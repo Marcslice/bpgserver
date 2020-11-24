@@ -1,0 +1,6 @@
+CREATE PROCEDURE PlayerAtk (@playerId INT)
+AS
+BEGIN
+    SELECT * 
+END
+

@@ -1,5 +1,7 @@
 CREATE PROCEDURE BackToTown(@playerId INT)
 AS
 BEGIN
-    SELECT playerZone /*actually need to change the state not*/
+    UPDATE playerStatus
+    SET playerStatus = 0
+    WHERE playerStatusPlayerId = @playerId
 END

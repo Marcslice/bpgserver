@@ -1,0 +1,1 @@
+SELECT playerHelmetId, playerEarringsId, playerNecklassId, playerArmorId, equipId, equipName FROM player WHERE playerId = 

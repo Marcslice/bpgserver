@@ -1,0 +1,5 @@
+CREATE PROCEDURE TheEnd(@playerId INT)
+AS
+BEGIN
+    SELECT *
+END

@@ -21,9 +21,12 @@ BEGIN
             SET @lvlScaling = @playerLVL - @mobLVL
             SET @mobHP += (10 * @lvlScaling)
         END
-        
 
 		INSERT INTO Combat (combatPlayerId, combatMobId, combatMobCHP)
 		VALUES (@playerId, @mobId ,@mobHP)
+
+        UPDATE playerStatus
+        SET playerStatus = 4
+        WHERE playerStatusPlayerId = @playerId
 	END
 END

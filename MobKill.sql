@@ -7,6 +7,7 @@ BEGIN
     DECLARE @questId INT = NULL
 
     SELECT @combatId = combatId, @mobId = combatMobId FROM Combat WHERE combatPlayerId = @playerId
+    
     SELECT @xpGain = get_xp(@combatId)
 
     UPDATE Player 
@@ -21,12 +22,12 @@ BEGIN
     BEGIN
         IF EXISTS(SELECT 1 FROM PlayeQuest WHERE pqPlayerId = @playerId AND pqQuestId = @questId AND pqStatus = 0 )
         BEGIN
+            DECLARE @questKill INT
+            DECLARE @pqKillCount INT
+
             UPDATE PlayerQuest
             SET pqKillCount += 1
             WHERE pqPlayerId = @playerId AND pqQuestId = @questId
-
-            DECLARE @questKill INT
-            DECLARE @pqKillCount INT
 
             SELECT @questKill = QRNQty FROM QRNemesis WHERE QRNQuestId = @questId
             SELECT @pqKillCount = pqKillCount FROM PlayerQuest WHERE pqQuestId = @questId AND pqPlayerId = @playerId 

@@ -13,14 +13,14 @@ BEGIN
     END
     ELSE IF (@randomEvent > 39)
     BEGIN
-        SELECT *
+        RETURN FuncHealingFountain(@playerId)
     END
     ELSE IF (@randomEvent > 19)
     BEGIN
-        SELECT *
+        RETURN FuncTreasure(@playerId)
     END
     ELSE
     BEGIN
-        SELECT *
+        RETURN FuncPortal(@playerId)
     END
 END

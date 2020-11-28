@@ -13,9 +13,9 @@ BEGIN
 
         SET @lWeapId = (SELECT playerLWeapId FROM Player WHERE playerId = @playerId)
         SET @rWeapId = (SELECT playerRWeapId FROM Player WHERE playerId = @playerId)
-        IF (@lWeapId != @rWeapId)
+        
+        IF (@lWeapId = @rWeapId)
         BEGIN
-            SET @dmg += (SELECT equipmentATK FROM Equipment INNER JOIN Player ON equipmentId = playerLWeapId WHERE playerId = @playerId)
             SET @dmg = (@dmg/2) * 1.5
         END
     END

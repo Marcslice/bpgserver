@@ -4,5 +4,8 @@ BEGIN
     DELETE FROM Combat WHERE combatPlayerId = @playerId
 
     EXEC DropBag @playerId = @playerId
-    EXEC BackToTown @playerId = @playerId
+    
+    UPDATE playerStatus
+    SET playerStatus = 8
+    WHERE playerStatusPlayerId = @playerId
 END

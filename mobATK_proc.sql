@@ -30,7 +30,7 @@ BEGIN
 		SET @dmg = 0
 	END
 	
-	SET @dmg = @dmg - (@dmg * (GetPlayerDEF(@playerId)/100))
+	SET @dmg = @dmg - (@dmg * (get_def(@playerId)/100))
 	
 	UPDATE Player
 	SET playerCurrentHP = playerCurrentHP - @dmg

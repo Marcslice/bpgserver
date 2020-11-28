@@ -4,7 +4,8 @@ AS
 BEGIN
     DECLARE @dmg INT
 
-    SET @dmg = (SELECT equipmentATK FROM Equipment INNER JOIN Player ON equipmentId = playerRWeapId WHERE playerId = @playerId)
+    SET @dmg = get_dmg(@playerId)
+    
     IF EXISTS (SELECT playerLWeapId FROM Player WHERE playerId = @playerId)
     BEGIN
         DECLARE @lWeapId INT

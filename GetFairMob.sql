@@ -4,4 +4,4 @@ AS
 RETURN
 	SELECT mobId
 	FROM Mob
-	WHERE mobLVL <= GetPlayerLVL(@playerId)
+	WHERE mobLVL <= dbo.GetPlayerLVL(@playerId)

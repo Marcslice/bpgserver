@@ -8,7 +8,7 @@ BEGIN
 
     SELECT @combatId = combatId, @mobId = combatMobId FROM Combat WHERE combatPlayerId = @playerId
     
-    SELECT @xpGain = get_xp(@combatId)
+    SELECT @xpGain = dbo.get_xp(@combatId)
 
     UPDATE Player 
     SET playerXP += @xpGain
@@ -39,7 +39,7 @@ BEGIN
                 WHERE playerStatusPlayerId = @playerId
             END
         END
-        ELSE IF (CheckBag(@playerId) = 0)
+        ELSE IF (dbo.CheckBag(@playerId) = 0)
         BEGIN
             UPDATE playerStatus
             SET playerStatus = 2

@@ -11,7 +11,7 @@ BEGIN
 
 		SET @mobId = (SELECT TOP 1 * FROM fairMob(@playerId) ORDER BY RAND())
 		SELECT @mobHP = mobHP FROM Mob WHERE mobId = @mobId
-        SELECT @mobLVL = mobLVL FROM mob WHERE mobId = @
+        SELECT @mobLVL = mobLVL FROM mob WHERE mobId = @mobId
         SELECT @playerLVL = playerLVL FROM Player WHERE playerId = @playerId
 
         if(@mobLVL < @playerLVL)

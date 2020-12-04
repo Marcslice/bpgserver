@@ -5,7 +5,7 @@ BEGIN
     DECLARE @mobId INT
     DECLARE @questId INT
 
-    SELECT @mobId = combatMobId FROM Combat WHERE playerId = @playerId
+    SELECT @mobId = combatMobId FROM Combat WHERE combatPlayerId = @playerId
     SELECT @questId = pqQuestId FROM PlayerQuest WHERE pqPlayerId = @playerId AND pqStatus = 0
 
     SET @lootId = (SELECT TOP 1 mobDropLootId FROM mobDrop WHERE mobDropMobId = @mobId ORDER BY RAND() )

@@ -1,5 +1,4 @@
-CREATE FUNCTION ChangeZone(@playerId INT)
-RETURNS BIT
+CREATE PROCEDURE ChangeZone(@playerId INT)
 AS
 BEGIN
     DECLARE @zoneLVL INT

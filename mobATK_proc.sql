@@ -18,7 +18,7 @@ BEGIN
 		BEGIN
 			SET @lvlScaling = @combatLVL - @mobLVL
 			SET @dmg = (@mobATK + @mobATK * ((@lvlScaling * 20) / 100))
-			SET @dmg = ROUND(@dmg)
+			SET @dmg = ROUND(@dmg, 0)
 		END
 		ELSE
 		BEGIN
@@ -30,7 +30,7 @@ BEGIN
 		SET @dmg = 0
 	END
 	
-	SET @dmg = @dmg - (@dmg * (get_def(@playerId)/100))
+	SET @dmg = @dmg - (@dmg * (dbo.get_def(@playerId)/100))
 	
 	UPDATE Player
 	SET playerCurrentHP = playerCurrentHP - @dmg

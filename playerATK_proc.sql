@@ -10,7 +10,7 @@ BEGIN
 
     IF FLOOR(RAND()*101) > 5.0
     BEGIN
-        SET @dmg = GetPlayerDMG(@playerId)
+        SET @dmg = dbo.GetPlayerDMG(@playerId)
 
         SELECT @mobDEF = mobDEF, @mobLVL = mobLVL FROM Mob INNER JOIN Combat ON mobId = combatMobId
         SELECT @playerLVL = playerLVL FROM Player INNER JOIN Combat ON playerId = @playerId
@@ -20,7 +20,7 @@ BEGIN
         BEGIN
             SET @lvlScaling = @playerLVL - @mobLVL
             SET @mobDEF +=  @mobDEF * ((@lvlScaling * 20) / 100)
-            SET @mobDEF = ROUND(@mobDEF)
+            SET @mobDEF = ROUND(@mobDEF, 0)
         END
 
         SET @dmg = @dmg / (1 + (@mobDEF / 100)) 

@@ -1,18 +1,17 @@
-CREATE FUNCTION FuncThief(@playerId INT)
-RETURNS varchar(150)
+CREATE PROCEDURE FuncThief(@playerId INT)
 AS
 BEGIN
-    DECLARE @text VARCHAR(140) = "You met a thief and he stole gold from you. You lost "
+    DECLARE @text VARCHAR(140) = 'You met a thief and he stole gold from you. You lost '
     DECLARE @qtyStolenT VARCHAR(10)
     DECLARE @qtyStolen INT
     DECLARE @playerGold INT
 
-    SET @qtyStolen = (SELECT CAST(FLOOR( RAND() * (501-100) + 100)))
+    SET @qtyStolen = (SELECT CAST(FLOOR( RAND() * (501-100) + 100) AS integer))
     SELECT @playerGold = playerGold FROM Player WHERE playerId = @playerId
 
     IF (@qtyStolen >= @playerGold)
     BEGIN
-        SET @qtyStolenT = "all your gold."
+        SET @qtyStolenT = 'all your gold.'
         UPDATE Player
         SET playerGold = 0
         WHERE playerId = @playerId
@@ -25,6 +24,3 @@ BEGIN
         SET playerGold -= @qtyStolen
         WHERE playerId = @playerId
     END
-
-    RETURN @text + @qtyStolenT
-END

@@ -6,11 +6,11 @@ BEGIN
 
     SELECT @zoneId = playerZoneId FROM Player WHERE playerId = @playerId
 
-    SET @questId = (SELECT TOP 1 questId FROM (SELECT questId FROM Quest WHERE questId NOT IN (SELECT playerQuestId FROM PlayerQuest WHERE playerQuestPlayerId = @playerId) AND questZoneId = @zoneId ) AS avaibleQuest ORDER BY RAND())
+    SET @questId = (SELECT TOP 1 questId FROM (SELECT questId FROM Quest WHERE questId NOT IN (SELECT pqQuestId FROM PlayerQuest WHERE pqPlayerId = @playerId) AND questZoneId = @zoneId ) AS avaibleQuest ORDER BY RAND())
     
     IF (@questId IS null)
     BEGIN
-        IF (ChangeZone(@playerId) = 0)
+        IF (dbo.ChangeZone(@playerId) = 0)
         BEGIN
             EXEC TheEnd @playerId = @playerId
         END
@@ -24,7 +24,7 @@ BEGIN
         BEGIN
             UPDATE PlayerQuest
             SET pqKillCount = 0
-            WHERE playerQuestPlayerId = @playerId
+            WHERE pqPlayerId = @playerId
         END
 
         UPDATE playerStatus
